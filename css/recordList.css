@@ -1,0 +1,7 @@
+table tr td {
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+.form .container-fluid .row {
+    margin-top: 2rem;
+}
