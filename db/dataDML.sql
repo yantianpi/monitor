@@ -13,9 +13,3 @@ insert  into `batch_list`(`Id`,`Name`,`Alias`,`Crontime`,`Throughput`,`Status`,`
 /*Data for the table `category_list` */
 
 insert  into `category_list`(`Id`,`Name`,`Alias`,`Script`,`Status`,`AddTime`,`UpdateTime`,`Timestamp`) values (1,'graburl','url抓取','monitorUrlInformation.php','ACTIVE','2017-07-05 18:56:18','2017-07-05 18:56:23','2017-07-07 11:24:11');
-
-/*Data for the table `log_list` */
-
-/*Data for the table `mail_list` */
-
-insert  into `mail_list`(`Id`,`Name`,`Mail`,`Status`,`AddTime`,`UpdateTime`,`Timestamp`) values (1,'1262233230','1262233230@qq.com','ACTIVE','2017-07-05 19:00:28','2017-07-05 19:00:31','2017-07-05 19:00:33'),(2,'1040043470','1040043470@qq.com','ACTIVE','2017-07-05 19:00:57','2017-07-05 19:01:00','2017-07-05 19:01:02');

@@ -158,24 +158,20 @@ foreach ($cronConfigList['batch'] as $categoryCronInfo) {
  */
 $cronPath = rtrim(DATA_DIR, '/') . '/' . 'cronList.txt';
 $message = '';
-if (!empty($cronList)) {
-    $originalCron = @file_get_contents($cronPath);
-    $string = $baseCronString . implode("\n", $cronList) . "\n";
-    if ($originalCron == $string) {
-        $message = "don't need to update.";
-    } else {
-        $status = file_put_contents($cronPath, $string, LOCK_EX);
-        if ($status !== false) {
-            $tmpArray = array();
-            @exec("crontab {$cronPath}", $tmpArray);
-            $tmp = implode("\t", $tmpArray);
-            $message = "write cron {$tmp}.";
-        } else {
-            $message = 'write file unsuccessfully!';
-        }
-    }
+$originalCron = @file_get_contents($cronPath);
+$string = $baseCronString . implode("\n", $cronList) . "\n";
+if ($originalCron == $string) {
+    $message = "don't need to update.";
 } else {
-    $message = 'cron list is empty.';
+    $status = file_put_contents($cronPath, $string, LOCK_EX);
+    if ($status !== false) {
+        $tmpArray = array();
+        @exec("crontab {$cronPath}", $tmpArray);
+        $tmp = implode("\t", $tmpArray);
+        $message = "write cron {$tmp}.";
+    } else {
+        $message = 'write file unsuccessfully!';
+    }
 }
 $message .= '. time ' . date('Y-m-d H:i:s') . ' cost ' . round(microtime(true) - $scriptStartTime, 4) . 's';
 Common::recordLog('RUN','OTHER','0', basename(__FILE__), 'Generate Cron List', $message);
